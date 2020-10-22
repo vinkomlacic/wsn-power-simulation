@@ -46,6 +46,8 @@ PROCESS_THREAD(udp_client_process, ev, data)
   static char str[32];
   uip_ipaddr_t dest_ipaddr;
   radio_value_t rssi;
+  radio_value_t linkquality;
+  radio_result_t result;
 
   PROCESS_BEGIN();
 
@@ -62,6 +64,9 @@ PROCESS_THREAD(udp_client_process, ev, data)
       LOG_INFO("Sending request %u to ", count);
       NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_RSSI, &rssi);
       LOG_INFO("RSSI: %d\n", rssi);
+      result = NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_LINK_QUALITY, &linkquality);
+      LOG_INFO("LQI: %u\n", linkquality);
+      LOG_INFO("LQI: %u\n", result);
       LOG_INFO_6ADDR(&dest_ipaddr);
       LOG_INFO_("\n");
       snprintf(str, sizeof(str), "hello %d", count);
