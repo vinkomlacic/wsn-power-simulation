@@ -84,9 +84,11 @@ PROCESS_THREAD(udp_client_process, ev, data)
   static unsigned count;
   static char str[32];
   uip_ipaddr_t dest_ipaddr;
+
   static radio_value_t rssi, tx_max, tx_min, current_tx_power;
   static radio_result_t result;
   static unsigned int counter = 0;
+  radio_value_t linkquality;
 
   PROCESS_BEGIN();
 
@@ -105,6 +107,8 @@ PROCESS_THREAD(udp_client_process, ev, data)
       /* Printing radio important parameters */
       result = NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_RSSI, &rssi);
       LOG_INFO("%d, RSSI: %d\n", result, rssi);
+      result = NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_LINK_QUALITY, &linkquality);
+      LOG_INFO("%d, LQI: %u\n", result, linkquality);
       result = NETSTACK_RADIO.get_value(RADIO_CONST_TXPOWER_MAX, &tx_max);
       LOG_INFO("%d, Maximum TX power: %d\n", result, tx_max);
       result = NETSTACK_RADIO.get_value(RADIO_CONST_TXPOWER_MIN, &tx_min);
