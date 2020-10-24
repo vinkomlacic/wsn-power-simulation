@@ -7,6 +7,11 @@
 *.obj
 *.elf
 
+# Contiki object files
+*.sky
+*.z1
+*.cooja
+
 # Linker output
 *.ilk
 *.map
