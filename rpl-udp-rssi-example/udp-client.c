@@ -117,7 +117,7 @@ PROCESS_THREAD(udp_client_process, ev, data)
       LOG_INFO("%d, Current TX power: %d\n", result, current_tx_power);
 
       /* Changing TX power */
-      LOG_INFO("Trying to set the TX power to: %d\n", tx_min - counter);
+      LOG_INFO("Trying to set the TX power to: %d\n", tx_max - counter);
       set_tx_power(tx_max - counter);
       counter = (counter+1) % (tx_max - tx_min + 1);
       result = NETSTACK_RADIO.get_value(RADIO_PARAM_TXPOWER, &current_tx_power);
