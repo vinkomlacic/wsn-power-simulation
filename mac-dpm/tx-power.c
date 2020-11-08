@@ -31,6 +31,18 @@ get_max_tx_power(void) {
 }
 
 
+radio_value_t
+get_min_tx_power(void) {
+    radio_value_t min_tx_power;
+    radio_result_t result = NETSTACK_RADIO.get_value(RADIO_CONST_TXPOWER_MIN, &min_tx_power);
+    if (result != RADIO_RESULT_OK) {
+        LOG_ERR("Problem fetching the minimum TX power: %d\n", result);
+    }
+
+    return min_tx_power;
+}
+
+
 void
 set_tx_power(radio_value_t const tx_power) {
     radio_result_t result = NETSTACK_RADIO.set_value(RADIO_PARAM_TXPOWER, tx_power);
