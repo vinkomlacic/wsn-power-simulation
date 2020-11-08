@@ -85,4 +85,16 @@
 #define LOG_LEVEL_MAC_DPM_MINIMIZATION LOG_LEVEL_NONE
 #endif /* LOG_LEVEL_CONF_MAC_DPM_MINIMIZATION */
 
+
+/**
+ * Sets the minimization sequence from max TX power to min TX power so that the iteration
+ * doesn't go one by one. Often, the radio drivers only allow certain discrete values as the
+ * power levels, not every number in range from max to min.
+ * 
+ * The value must be an array initializer.
+ */
+#ifdef MAC_DPM_CONF_MINIMIZATION_SEQUENCE
+#define MAC_DPM_MINIMIZATION_SEQUENCE MAC_DPM_CONF_MINIMIZATION_SEQUENCE
+#endif /* MAC_DPM_CONF_MINIMIZATION_SEQUENCE */
+
 #endif /* MAC_DPM_CONF_ */
