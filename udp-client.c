@@ -5,6 +5,7 @@
 #include "net/ipv6/simple-udp.h"
 
 #include "sys/log.h"
+#include "sys/energest.h"
 #include "net-debug.h"
 
 #define LOG_MODULE "App"
